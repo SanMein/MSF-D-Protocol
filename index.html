@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSF Code Protocol</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/msf-logo.png">
+</head>
+<body>
+    <div class="background-overlay"></div>
+
+    <header class="header">
+        <div class="header-content">
+            <img src="assets/msf-logo.png" alt="MSF" class="logo">
+            <div class="title">
+                <h1>MSF CODE PROTOCOL</h1>
+                <span class="subtitle">OPERATIVE IDENTIFICATION SYSTEM</span>
+            </div>
+            <div class="access-display">
+                <span>ACCESS LEVEL: </span>
+                <span id="access-level" class="access-level delta">Δ-DELTA</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="columns">
+            <!-- Левая колонка - Identity -->
+            <section class="column identity-column">
+                <div class="panel">
+                    <h2>OPERATIVE IDENTITY</h2>
+                    <p class="panel-description">Generate unique identification codes for field operatives</p>
+
+                    <div class="input-field">
+                        <label for="operative-callsign">OPERATIVE CALLSIGN</label>
+                        <input type="text" id="operative-callsign" placeholder="Enter callsign" maxlength="20">
+                    </div>
+
+                    <button id="generate-fighter-code" class="generate-btn">
+                        GENERATE IDENTITY CODE
+                    </button>
+
+                    <div class="result-section">
+                        <div id="fighter-code" class="code-output">
+                            Identity code will appear here
+                        </div>
+                        <canvas id="qr-code" class="qr-code"></canvas>
+                        <div id="fighter-timestamp" class="timestamp"></div>
+                        <button id="download-qr-btn" class="download-btn">
+                            DOWNLOAD QR CODE
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Правая колонка - Audit -->
+            <section class="column audit-column">
+                <div class="panel">
+                    <h2>OPERATIVE AUDIT</h2>
+                    <p class="panel-description">Generate audit numbers for mission documentation</p>
+
+                    <div class="input-field">
+                        <label for="audit-callsign">OPERATIVE CALLSIGN</label>
+                        <input type="text" id="audit-callsign" placeholder="Enter callsign" maxlength="20">
+                    </div>
+
+                    <button id="generate-audit-number" class="generate-btn">
+                        GENERATE AUDIT NUMBER
+                    </button>
+
+                    <div class="result-section">
+                        <div id="audit-number" class="code-output">
+                            Audit number will appear here
+                        </div>
+                        <div class="audit-info">
+                            <div class="info-item">
+                                <span>STATUS:</span>
+                                <span class="status-active">ACTIVE</span>
+                            </div>
+                            <div class="info-item">
+                                <span>CLEARANCE:</span>
+                                <span>LEVEL-D</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="access-input">
+                <span>> ACCESS_CODE: </span>
+                <input type="text" id="access-code-input" placeholder="Enter access code" maxlength="60">
+            </div>
+            <div class="system-status">
+                <span>MSF SECURE TERMINAL v2.3.4 | ENCRYPTION: AES-256 | STATUS: ONLINE</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальные окна -->
+    <div id="audit-window" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>OPERATIVE ARCHIVE</h3>
+                <div class="modal-controls">
+                    <button id="clear-audit" class="btn-secondary">CLEAR ARCHIVE</button>
+                    <button id="close-audit" class="btn-close">×</button>
+                </div>
+            </div>
+            <div id="audit-log" class="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <!-- ВАЖНО: СНАЧАЛА generator.js, ПОТОМ app.js -->
+    <script src="js/generator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
