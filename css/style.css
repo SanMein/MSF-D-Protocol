@@ -56,13 +56,12 @@ body {
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
-    filter: grayscale(100%) brightness(80%);
+    width: 75px;
+    height: 75px;
 }
 
 .title h1 {
-    color: var(--color-text-bright);
+    color: #9B5AAF;
     font-size: 1.4rem;
     font-weight: normal;
     letter-spacing: 1px;
@@ -75,7 +74,7 @@ body {
 }
 
 .access-display {
-    font-size: 0.9rem;
+    font-size: 1.0rem;
 }
 
 .access-level {
@@ -84,14 +83,14 @@ body {
     font-weight: bold;
 }
 
-.access-level.delta { border-color: var(--color-accent); color: var(--color-accent); }
-.access-level.gamma { border-color: var(--color-success); color: var(--color-success); }
-.access-level.beta { border-color: var(--color-warning); color: var(--color-warning); }
-.access-level.alpha { border-color: var(--color-error); color: var(--color-error); }
+.access-level.delta { border-color: #FFFF00; color: #FFFF00; }
+.access-level.gamma { border-color: #00FF00; color: #00FF00; }
+.access-level.beta { border-color: #0000FF; color: #0000FF; }
+.access-level.alpha { border-color: #FF0000; color: #FF0000; }
 
 /* Main Content */
 .main-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -138,23 +137,22 @@ body {
     color: var(--color-text-bright);
     font-family: inherit;
     font-size: 0.9rem;
-    cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .generate-btn:hover {
     background-color: var(--color-light);
-    border-color: var(--color-accent);
+    border-color: #9B5AAF;
 }
 
 .generate-btn.primary {
-    background-color: var(--color-primary);
+    background-color: #9B5AAF;
     border-color: var(--color-primary);
 }
 
 .generate-btn.primary:hover {
     background-color: var(--color-light);
-    border-color: var(--color-accent);
+    border-color: #9B5AAF;
 }
 
 /* Results */
@@ -182,7 +180,7 @@ body {
     background-color: var(--color-medium);
     border: 1px solid var(--color-border);
     padding: 1rem;
-    min-height: 80px;
+    min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -237,12 +235,11 @@ body {
     color: var(--color-text);
     font-family: inherit;
     font-size: 0.9rem;
-    cursor: pointer;
     width: 100%;
 }
 
 .download-btn:hover {
-    border-color: var(--color-accent);
+    border-color: #9B5AAF;
     color: var(--color-text-bright);
 }
 
@@ -250,7 +247,7 @@ body {
 .footer {
     background-color: var(--color-dark);
     border-top: 1px solid var(--color-border);
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -365,8 +362,8 @@ body {
 /* Notification */
 .notification {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 25px;
+    right: 25px;
     padding: 1rem 1.5rem;
     background-color: var(--color-dark);
     border: 1px solid var(--color-border);
