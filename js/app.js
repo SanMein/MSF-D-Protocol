@@ -34,7 +34,7 @@ class MSFApp {
         });
 
         // Generate audit number button
-        document.getElementById('generate-audit-number').addEventListener('click', () => {
+        document.getElementById('generate-audit-msf').addEventListener('click', () => {
             this.generateAuditNumber();
         });
 
@@ -109,18 +109,18 @@ class MSFApp {
         const auditNumber = CodeGenerator.generateAuditNumber();
         this.currentCodes.auditNumber = auditNumber;
 
-        this.animateCodeDisplay('audit-number', auditNumber);
+        this.animateCodeDisplay('audit-msf', auditNumber);
         document.getElementById('audit-timestamp').textContent = new Date().toLocaleString('ru-RU');
         document.getElementById('qr-audit-number').textContent = auditNumber;
 
-        this.addToArchive('AUDIT_NUMBER', auditNumber, null);
+        this.addToArchive('AUDIT_MSF', auditNumber, null);
 
         // Generate QR code if both codes exist
         if (this.currentCodes.msfCode && this.currentCodes.auditNumber) {
             this.updateQRCode();
         }
 
-        this.showNotification('Аудит-номер сгенерирован', 'success');
+        this.showNotification('Аудит MSF сгенерирован', 'success');
     }
 
     generateBothCodes() {
@@ -133,7 +133,7 @@ class MSFApp {
         document.getElementById('qr-msf-code').textContent = codes.msfCode;
 
         // Update audit number display
-        this.animateCodeDisplay('audit-number', codes.auditNumber);
+        this.animateCodeDisplay('audit-msf', codes.auditNumber);
         document.getElementById('audit-timestamp').textContent = new Date().toLocaleString('ru-RU');
         document.getElementById('qr-audit-number').textContent = codes.auditNumber;
 
