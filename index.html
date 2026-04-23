@@ -9,58 +9,40 @@
 </head>
 <body>
     <div class="background-overlay"></div>
+
     <header class="header">
         <div class="header-content">
             <img src="assets/msf-logo.png" alt="MSF" class="logo">
             <div class="title">
-                <h1>СИСТЕМА ГЕНЕРАЦИИ КОДОВ MSF</h1>
+                <h1>ГЕНЕРАТОР КОДОВ MSF</h1>
                 <span class="subtitle">СИСТЕМА КОДИРОВАННЫХ ИДЕНТИФИКАТОРОВ</span>
             </div>
             <div class="access-display">
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -35,7 +35,7 @@ <h2>ГЕНЕРАЦИЯ КОДОВ</h2>
-  
                 <span>УРОВЕНЬ ДОСТУПА: </span>
                 <span id="access-level" class="access-level delta">Δ-DELTA</span>
             </div>
         </div>
     </header>
+
     <main class="main-container">
         <div class="panel">
             <h2>ГЕНЕРАЦИЯ КОДОВ</h2>
             <p class="panel-description">Генерация кодовых идентификаторов и QR-кодов</p>
+
             <div class="controls">
                 <button id="generate-msf-code" class="generate-btn">
                     СГЕНЕРИРОВАТЬ КОД MSF
                 </button>
 
                 <button id="generate-audit-number" class="generate-btn">
-                    СГЕНЕРИРОВАТЬ АУДИТ-НОМЕР
+                    СГЕНЕРИРОВАТЬ АУДИТ MSF
                 </button>
 
                 <button id="generate-both" class="generate-btn primary">
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -53,9 +53,9 @@ <h3>КОД MSF</h3>
-  
                     СГЕНЕРИРОВАТЬ ОБА КОДА
                 </button>
             </div>
+
             <div class="results-container">
                 <div class="result-section">
                     <h3>КОД MSF</h3>
@@ -71,23 +53,13 @@
                 </div>
 
                 <div class="result-section">
-                    <h3>АУДИТ-НОМЕР MSF-D</h3>
+                    <h3>АУДИТ MSF</h3>
                     <div id="audit-number" class="code-output">
-                        Аудит-номер появится здесь
+                        Аудит MSF появится здесь
                     </div>
                     <div id="audit-timestamp" class="timestamp"></div>
                 </div>
 
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -69,7 +69,7 @@ <h3>QR-КОД</h3>
-  
                 <div class="qr-section">
                     <h3>QR-КОД</h3>
                     <canvas id="qr-code" class="qr-code"></canvas>
@@ -97,21 +69,10 @@
                             <span id="qr-msf-code">—</span>
                         </div>
                         <div class="info-item">
-                            <span>АУДИТ-НОМЕР:</span>
+                            <span>АУДИТ MSF:</span>
                             <span id="qr-audit-number">—</span>
                         </div>
                     </div>
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -84,12 +84,9 @@ <h3>QR-КОД</h3>
-  
                     <button id="download-qr-btn" class="download-btn">
                         СКАЧАТЬ QR-КОД
                     </button>
@@ -119,29 +80,16 @@
             </div>
         </div>
     </main>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="access-input">
-                <span>> КОД_ДОСТУПА: </span>
+                <span>> КОД ДОСТУПА: </span>
                 <input type="text" id="access-code-input" placeholder="Введите код доступа" maxlength="60">
-            </div>
-            <div class="system-status">
-                <span>ТЕРМИНАЛ MSF v2.3.4 | ШИФРОВАНИЕ: AES-256 | СТАТУС: АКТИВЕН</span>
             </div>
         </div>
     </footer>
 
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -113,4 +110,4 @@ <h3>АРХИВ КОДОВ</h3>
-  
     <!-- Модальные окна -->
     <div id="archive-window" class="modal hidden">
         <div class="modal-content">
@@ -155,7 +103,9 @@
             <div id="archive-log" class="modal-body"></div>
         </div>
     </div>
+
     <div id="notification" class="notification hidden"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script src="js/generator.js"></script>
     <script src="js/app.js"></script>
