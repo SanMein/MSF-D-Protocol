@@ -106,7 +106,7 @@ class MSFApp {
             return false;
         }
         if (!selectedService) {
-            this.showNotification('Выберите службу (корпус)', 'warning');
+            this.showNotification('Выберите корпус', 'warning');
             return false;
         }
 
