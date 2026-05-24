@@ -1,6 +1,5 @@
 // js/generator.js
 class CodeGenerator {
-    // Generate MSF code (MSF-XXXX-XXXX-XXXX)
     static generateMSFCode() {
         const prefix = "MSF-";
         const randomPart1 = Math.random().toString(36).substr(2, 4).toUpperCase();
@@ -10,7 +9,6 @@ class CodeGenerator {
         return `${prefix}${randomPart1}-${randomPart2}-${randomPart3}`;
     }
 
-    // Generate audit number (MSF-D-XXXXXX-X)
     static generateAuditNumber() {
         const prefix = "MSF-D-";
         const mainNumber = Math.floor(100000 + Math.random() * 900000);
@@ -19,19 +17,17 @@ class CodeGenerator {
         return `${prefix}${mainNumber}-${statusNumber}`;
     }
 
-    // Generate QR code with both codes - purple/dark theme
-    static generateQRCode(msfCode, auditNumber, canvasId = 'qr-code') {
+    static generateQRCodeWithText(text, canvasId = 'qr-code') {
         return new Promise((resolve, reject) => {
             const qrCanvas = document.getElementById(canvasId);
-            const combinedText = `MSF Code: ${msfCode}\nAudit Number: ${auditNumber}`;
 
-            QRCode.toCanvas(qrCanvas, combinedText, {
+            QRCode.toCanvas(qrCanvas, text, {
                 errorCorrectionLevel: 'H',
                 margin: 1,
                 width: 180,
                 color: {
-                    dark: '#9B5AAF',   // фиолетовый цвет модулей
-                    light: '#1a1a1a'   // тёмный фон
+                    dark: '#9B5AAF',
+                    light: '#1a1a1a'
                 }
             }, (error) => {
                 if (error) {
@@ -43,7 +39,6 @@ class CodeGenerator {
         });
     }
 
-    // Generate both codes at once
     static generateBothCodes() {
         const msfCode = this.generateMSFCode();
         const auditNumber = this.generateAuditNumber();
