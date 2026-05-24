@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Генератор кодов MSF</title>
+    <title>Генератор кодов MSF | Регистратура оперативника</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="assets/msf-logo.png">
 </head>
@@ -14,8 +14,8 @@
         <div class="header-content">
             <img src="assets/msf-logo.png" alt="MSF" class="logo">
             <div class="title">
-                <h1>ГЕНЕРАТОР КОДОВ MSF</h1>
-                <span class="subtitle">СИСТЕМА КОДИРОВАННЫХ ИДЕНТИФИКАТОРОВ</span>
+                <h1>MSF-D-Control</h1>
+                <span class="subtitle">РЕГИСТРАТУРА ОПЕРАТИВНИКА</span>
             </div>
             <div class="access-display">
                 <span>УРОВЕНЬ ДОСТУПА: </span>
@@ -26,18 +26,96 @@
 
     <main class="main-container">
         <div class="panel">
-            <h2>ГЕНЕРАЦИЯ КОДОВ</h2>
-            <p class="panel-description">Генерация кодовых идентификаторов и QR-кодов</p>
+            <h2>РЕГИСТРАЦИЯ ОПЕРАТИВНИКА</h2>
+            <p class="panel-description">Заполните данные сотрудника перед генерацией кодов</p>
+
+            <!-- Блок регистрации оперативника -->
+            <div class="registration-block">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="callsign">ПОЗЫВНОЙ ОПЕРАТИВНИКА</label>
+                        <input type="text" id="callsign" placeholder="пример: HAWK" maxlength="8" class="form-input">
+                        <span class="input-hint">2-8 символов, только латиница, без цифр</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="dsid">DS-ID</label>
+                        <input type="text" id="dsid" placeholder="пример: 123456789012345678" maxlength="32" class="form-input">
+                        <span class="input-hint">Discord ID оперативника</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>СЛУЖБА (КОРПУС)</label>
+                    <div class="service-selector">
+                        <label class="service-card">
+                            <input type="radio" name="service" value="SSC" data-abbr="SSC" data-name="Strike Service Corps">
+                            <div class="service-card-content">
+                                <span class="service-abbr">SSC</span>
+                                <span class="service-title">Strike Service Corps</span>
+                                <span class="service-desc">Штурмовая служба (Корпус)</span>
+                            </div>
+                        </label>
+                        <label class="service-card">
+                            <input type="radio" name="service" value="RSC" data-abbr="RSC" data-name="Recon Service Corps">
+                            <div class="service-card-content">
+                                <span class="service-abbr">RSC</span>
+                                <span class="service-title">Recon Service Corps</span>
+                                <span class="service-desc">Разведывательно-Снайперская служба (Корпус)</span>
+                            </div>
+                        </label>
+                        <label class="service-card">
+                            <input type="radio" name="service" value="MSC" data-abbr="MSC" data-name="Medical Service Corps">
+                            <div class="service-card-content">
+                                <span class="service-abbr">MSC</span>
+                                <span class="service-title">Medical Service Corps</span>
+                                <span class="service-desc">Медицинская служба (Корпус)</span>
+                            </div>
+                        </label>
+                        <label class="service-card">
+                            <input type="radio" name="service" value="TSC" data-abbr="TSC" data-name="Technical Service Corps">
+                            <div class="service-card-content">
+                                <span class="service-abbr">TSC</span>
+                                <span class="service-title">Technical Service Corps</span>
+                                <span class="service-desc">Техническая служба (Корпус)</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок справки -->
+            <div class="help-section">
+                <div class="help-header">
+                    <span class="help-icon">📋</span>
+                    <span>СПРАВКА ПО СЛУЖБАМ</span>
+                </div>
+                <div class="help-content">
+                    <div class="help-item" data-service="SSC">
+                        <strong>SSC (Strike Service Corps)</strong> — Штурмовая служба (Корпус)<br>
+                        SSC является основным боевым компонентом ЧВК и предназначена для ведения непосредственного огневого контакта с противником, выполнения задач по захвату, удержанию и зачистке объектов, а также обеспечения огневого давления на противника в ходе операций.
+                    </div>
+                    <div class="help-item" data-service="RSC">
+                        <strong>RSC (Recon Service Corps)</strong> — Разведывательно-Снайперская служба (Корпус)<br>
+                        RSC является специализированным разведывательно-снайперским компонентом ЧВК "MSF-043" и предназначена для ведения высокоточного огня на средних и дальних дистанциях, уничтожения приоритетных целей, ведения наблюдения, сбора разведывательной информации, корректировки действий подразделений, а также обеспечения огневой поддержки в интересах штурмовых и иных подразделений.
+                    </div>
+                    <div class="help-item" data-service="MSC">
+                        <strong>MSC (Medical Service Corps)</strong> — Медицинская служба (Корпус)<br>
+                        MSC является профильным медицинским компонентом ЧВК "MSF-043" и предназначена для обеспечения сохранения жизни, здоровья и боеспособности личного состава в ходе выполнения служебных и боевых задач.
+                    </div>
+                    <div class="help-item" data-service="TSC">
+                        <strong>TSC (Technical Service Corps)</strong> — Техническая служба (Корпус)<br>
+                        TSC является профильным техническим компонентом ЧВК "MSF-043" и предназначена для обеспечения подразделений транспортными средствами, техническими средствами ведения боя, инженерными ресурсами и средствами огневой поддержки, а также для поддержания их исправного состояния и эффективного применения в ходе операций.
+                    </div>
+                </div>
+            </div>
 
             <div class="controls">
                 <button id="generate-msf-code" class="generate-btn">
-                    СГЕНЕРИРОВАТЬ АУДИТ MSF
-                </button>
-
-                <button id="generate-audit-number" class="generate-btn">
                     СГЕНЕРИРОВАТЬ КОД MSF
                 </button>
-
+                <button id="generate-audit-number" class="generate-btn">
+                    СГЕНЕРИРОВАТЬ АУДИТ MSF
+                </button>
                 <button id="generate-both" class="generate-btn primary">
                     СГЕНЕРИРОВАТЬ ОБА КОДА
                 </button>
@@ -45,36 +123,46 @@
 
             <div class="results-container">
                 <div class="result-section">
-                    <h3>АУДИТ MSF</h3>
+                    <h3>КОД MSF</h3>
                     <div id="msf-code" class="code-output">
-                        -
+                        Код MSF появится здесь
                     </div>
                     <div id="msf-timestamp" class="timestamp"></div>
                 </div>
-
                 <div class="result-section">
-                    <h3>КОД MSF</h3>
+                    <h3>АУДИТ MSF</h3>
                     <div id="audit-number" class="code-output">
-                        -
+                        Аудит MSF появится здесь
                     </div>
                     <div id="audit-timestamp" class="timestamp"></div>
                 </div>
-
                 <div class="qr-section">
                     <h3>QR-КОД</h3>
                     <canvas id="qr-code" class="qr-code"></canvas>
                     <div class="qr-info">
                         <div class="info-item">
-                            <span>Аудит MSF:</span>
+                            <span>ПОЗЫВНОЙ:</span>
+                            <span id="qr-callsign">—</span>
+                        </div>
+                        <div class="info-item">
+                            <span>DS-ID (****):</span>
+                            <span id="qr-dsid-masked">—</span>
+                        </div>
+                        <div class="info-item">
+                            <span>КОД MSF:</span>
                             <span id="qr-msf-code">—</span>
                         </div>
                         <div class="info-item">
-                            <span>Код MSF:</span>
+                            <span>АУДИТ:</span>
                             <span id="qr-audit-number">—</span>
                         </div>
+                        <div class="info-item">
+                            <span>СЛУЖБА:</span>
+                            <span id="qr-service-abbr">—</span>
+                        </div>
                     </div>
-                    <button id="download-qr-btn" class="download-btn">
-                        СКАЧАТЬ QR-КОД
+                    <button id="register-btn" class="register-btn">
+                        РЕГИСТРАЦИЯ
                     </button>
                 </div>
             </div>
@@ -90,13 +178,12 @@
         </div>
     </footer>
 
-    <!-- Модальные окна -->
     <div id="archive-window" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>АРХИВ КОДОВ</h3>
+                <h3>АРХИВ КОДОВ <span id="archive-count" class="archive-counter"></span></h3>
                 <div class="modal-controls">
-                    <button id="clear-archive" class="btn-secondary">ОЧИСТИТЬ АРХИВ</button>
+                    <button id="clear-archive" class="btn-secondary">ОЧИСТИТЬ</button>
                     <button id="close-archive" class="btn-close">×</button>
                 </div>
             </div>
