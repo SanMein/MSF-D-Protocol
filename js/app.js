@@ -240,7 +240,7 @@ class MSFApp {
                 console.warn('Текст не скопирован отдельно, но изображение скопировано');
             }
 
-            this.showNotification('QR-код (изображение) и текст скопированы в буфер обмена', 'success');
+            this.showNotification('Текст скопированы в буфер обмена', 'success');
 
             this.addToArchive('REGISTRATION',
                 `${callsign} | ${serviceAbbr} | ${msfCode} | ${auditNumber}`,
