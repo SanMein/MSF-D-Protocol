@@ -119,7 +119,7 @@ class MSFApp {
     }
 
     validateCallsign(callsign) {
-        const regex = /^[A-Za-z]{2,8}$/;
+        const regex = /^[A-Яа-яёЁ]{2,8}$/;
         return regex.test(callsign);
     }
 
