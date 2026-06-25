@@ -12,7 +12,9 @@
 
     <header class="header">
         <div class="header-content">
-            <img src="assets/msf-logo.png" alt="MSF" class="logo">
+            <div class="logo-wrapper">
+                <img src="assets/msf-logo.png" alt="MSF" class="logo">
+            </div>
             <div class="title">
                 <h1>MSF-D-Control</h1>
                 <span class="subtitle">РЕГИСТРАТУРА ОПЕРАТИВНИКА</span>
@@ -44,6 +46,7 @@
                     </div>
                 </div>
 
+                <!-- Выбор корпуса -->
                 <div class="form-group">
                     <label>КОРПУС</label>
                     <div class="service-selector">
@@ -81,13 +84,52 @@
                         </label>
                     </div>
                 </div>
+
+                <!-- Выбор подразделения/взвода -->
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <label>ПОДРАЗДЕЛЕНИЕ / ВЗВОД</label>
+                    <div class="unit-selector">
+                        <label class="unit-card">
+                            <input type="radio" name="unit" value="NONE" data-abbr="—" data-name="Не назначено">
+                            <div class="unit-card-content">
+                                <span class="unit-abbr">—</span>
+                                <span class="unit-title">Без назначения</span>
+                                <span class="unit-desc">Стандартный штат MSF</span>
+                            </div>
+                        </label>
+                        <label class="unit-card">
+                            <input type="radio" name="unit" value="USF" data-abbr="USF" data-name="Universal Strike Force">
+                            <div class="unit-card-content">
+                                <span class="unit-abbr">USF</span>
+                                <span class="unit-title">Universal Strike Force</span>
+                                <span class="unit-desc">Элитный универсальный отряд</span>
+                            </div>
+                        </label>
+                        <label class="unit-card">
+                            <input type="radio" name="unit" value="DMS" data-abbr="DMS" data-name="Double MilSec">
+                            <div class="unit-card-content">
+                                <span class="unit-abbr">DMS</span>
+                                <span class="unit-title">Double MilSec</span>
+                                <span class="unit-desc">Двойная специализация</span>
+                            </div>
+                        </label>
+                        <label class="unit-card">
+                            <input type="radio" name="unit" value="FD" data-abbr="FD" data-name="Field Demons">
+                            <div class="unit-card-content">
+                                <span class="unit-abbr">FD</span>
+                                <span class="unit-title">Field Demons</span>
+                                <span class="unit-desc">Диверсионно-тактический взвод</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
             </div>
 
-            <!-- Блок справки -->
+            <!-- Блок справки по корпусам -->
             <div class="help-section">
                 <div class="help-header">
                     <span class="help-icon">📋</span>
-                    <span>СПРАВКА ПО СЛУЖБАМ</span>
+                    <span>СПРАВКА ПО СЛУЖБАМ (КОРПУСАМ)</span>
                 </div>
                 <div class="help-content">
                     <div class="help-item" data-service="SSC">
@@ -105,6 +147,32 @@
                     <div class="help-item" data-service="TSC">
                         <strong>TSC (Technical Service Corps)</strong> — Технический корпус<br>
                         TSC является профильным техническим компонентом ЧВК "MSF-043" и предназначен для обеспечения подразделений транспортными средствами, техническими средствами ведения боя, инженерными ресурсами и средствами огневой поддержки, а также для поддержания их исправного состояния и эффективного применения в ходе операций.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок справки по подразделениям -->
+            <div class="help-section">
+                <div class="help-header">
+                    <span class="help-icon">⚔️</span>
+                    <span>СПРАВКА ПО ПОДРАЗДЕЛЕНИЯМ / ВЗВОДАМ</span>
+                </div>
+                <div class="help-content">
+                    <div class="help-item" data-unit="USF">
+                        <strong>USF (Universal Strike Force)</strong> — Элитное подразделение<br>
+                        Оперативники USF обладают универсальной боевой подготовкой по всем четырём корпусам (SSC, RSC, MSC, TSC). Каждый боец обязан владеть компетенциями всех служб и не имеет права отказываться от выполнения задач по любой из специализаций. Требование к кандидатам: грейд не ниже K3, уровень родного корпуса не ниже XXX-2.
+                    </div>
+                    <div class="help-item" data-unit="DMS">
+                        <strong>DMS (Double MilSec)</strong> — Взвод двойной специализации<br>
+                        Оперативники DMS владеют компетенциями двух корпусов на выбор. Повышение уровня происходит синхронно по обеим специализациям. Оперативник не имеет права отказываться от выполнения задач по любой из выбранных специализаций. Требование к кандидатам: грейд не ниже K2, положительная характеристика.
+                    </div>
+                    <div class="help-item" data-unit="FD">
+                        <strong>FD (Field Demons)</strong> — Диверсионно-тактический взвод<br>
+                        Специализированный тактический взвод для диверсионных атак в тылу противника, нейтрализации приоритетных целей, прорыва обороны и эвакуации. Оперативники обязаны владеть компетенциями своего корпуса на уровне не ниже XXX-2. Набор осуществляется на добровольной основе.
+                    </div>
+                    <div class="help-item" data-unit="NONE">
+                        <strong>Не назначено</strong> — Стандартный штат MSF<br>
+                        Оперативник не закреплён за специализированным взводом и выполняет задачи в составе линейных подразделений своего корпуса.
                     </div>
                 </div>
             </div>
@@ -159,6 +227,10 @@
                         <div class="info-item">
                             <span>КОРПУС:</span>
                             <span id="qr-service-abbr">—</span>
+                        </div>
+                        <div class="info-item">
+                            <span>ВЗВОД:</span>
+                            <span id="qr-unit-abbr">—</span>
                         </div>
                     </div>
                     <button id="register-btn" class="register-btn">
