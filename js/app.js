@@ -12,7 +12,9 @@ class MSFApp {
             callsign: null,
             dsid: null,
             service: null,
-            serviceAbbr: null
+            serviceAbbr: null,
+            unit: null,
+            unitAbbr: null
         };
         this.init();
     }
@@ -79,6 +81,9 @@ class MSFApp {
         document.querySelectorAll('input[name="service"]').forEach(radio => {
             radio.addEventListener('change', () => this.updateQRInfoDisplay());
         });
+        document.querySelectorAll('input[name="unit"]').forEach(radio => {
+            radio.addEventListener('change', () => this.updateQRInfoDisplay());
+        });
 
         this.archiveButton = document.createElement('button');
         this.archiveButton.id = 'archive-button';
@@ -92,13 +97,14 @@ class MSFApp {
         const callsign = document.getElementById('callsign').value.trim();
         const dsid = document.getElementById('dsid').value.trim();
         const selectedService = document.querySelector('input[name="service"]:checked');
+        const selectedUnit = document.querySelector('input[name="unit"]:checked');
 
         if (!callsign) {
             this.showNotification('Введите позывной оперативника', 'warning');
             return false;
         }
         if (!this.validateCallsign(callsign)) {
-            this.showNotification('Позывной: 2-8 символов, только латиница, без цифр', 'warning');
+            this.showNotification('Позывной: 2-8 символов, только кириллица, без цифр', 'warning');
             return false;
         }
         if (!dsid) {
@@ -109,17 +115,23 @@ class MSFApp {
             this.showNotification('Выберите корпус', 'warning');
             return false;
         }
+        if (!selectedUnit) {
+            this.showNotification('Выберите подразделение/взвод', 'warning');
+            return false;
+        }
 
         this.currentOperator.callsign = callsign;
         this.currentOperator.dsid = dsid;
         this.currentOperator.serviceAbbr = selectedService.value;
         this.currentOperator.service = selectedService.getAttribute('data-name');
+        this.currentOperator.unitAbbr = selectedUnit.value;
+        this.currentOperator.unit = selectedUnit.getAttribute('data-name');
 
         return true;
     }
 
     validateCallsign(callsign) {
-        const regex = /^[A-Яа-яёЁ]{2,8}$/;
+        const regex = /^[А-Яа-яёЁ]{2,8}$/;
         return regex.test(callsign);
     }
 
@@ -134,10 +146,13 @@ class MSFApp {
         const maskedDsid = dsid ? this.getMaskedDsid(dsid) : '—';
         const selectedService = document.querySelector('input[name="service"]:checked');
         const serviceAbbr = selectedService ? selectedService.value : '—';
+        const selectedUnit = document.querySelector('input[name="unit"]:checked');
+        const unitAbbr = selectedUnit ? selectedUnit.value : '—';
 
         document.getElementById('qr-callsign').textContent = callsign;
         document.getElementById('qr-dsid-masked').textContent = maskedDsid;
         document.getElementById('qr-service-abbr').textContent = serviceAbbr;
+        document.getElementById('qr-unit-abbr').textContent = unitAbbr;
 
         if (this.currentCodes.msfCode) {
             document.getElementById('qr-msf-code').textContent = this.currentCodes.msfCode;
@@ -216,8 +231,9 @@ class MSFApp {
         const msfCode = this.currentCodes.msfCode;
         const auditNumber = this.currentCodes.auditNumber;
         const serviceAbbr = this.currentOperator.serviceAbbr;
+        const unitAbbr = this.currentOperator.unitAbbr;
 
-        const clipboardText = `${callsign} | ${dsidMasked} | ${msfCode} | ${auditNumber} | ${serviceAbbr}`;
+        const clipboardText = `${callsign} | ${dsidMasked} | ${msfCode} | ${auditNumber} | ${serviceAbbr} | ${unitAbbr}`;
 
         const qrCanvas = document.getElementById('qr-code');
         if (!qrCanvas) {
@@ -240,10 +256,10 @@ class MSFApp {
                 console.warn('Текст не скопирован отдельно, но изображение скопировано');
             }
 
-            this.showNotification('Текст скопированы в буфер обмена', 'success');
+            this.showNotification('Данные скопированы в буфер обмена', 'success');
 
             this.addToArchive('REGISTRATION',
-                `${callsign} | ${serviceAbbr} | ${msfCode} | ${auditNumber}`,
+                `${callsign} | ${serviceAbbr} | ${unitAbbr} | ${msfCode} | ${auditNumber}`,
                 callsign);
 
         } catch (error) {
@@ -253,7 +269,7 @@ class MSFApp {
                 await navigator.clipboard.writeText(clipboardText);
                 this.showNotification('Не удалось скопировать QR-код (изображение), но текст скопирован', 'warning');
                 this.addToArchive('REGISTRATION',
-                    `${callsign} | ${serviceAbbr} | ${msfCode} | ${auditNumber}`,
+                    `${callsign} | ${serviceAbbr} | ${unitAbbr} | ${msfCode} | ${auditNumber}`,
                     callsign);
             } catch (textError) {
                 this.showNotification('Не удалось скопировать данные. Попробуйте вручную.', 'error');
@@ -266,8 +282,9 @@ class MSFApp {
             const callsign = this.currentOperator.callsign || 'OPERATOR';
             const dsidMasked = this.currentOperator.dsid ? this.getMaskedDsid(this.currentOperator.dsid) : '****';
             const serviceAbbr = this.currentOperator.serviceAbbr || 'NONE';
+            const unitAbbr = this.currentOperator.unitAbbr || 'NONE';
 
-            const qrText = `${callsign} | ${dsidMasked} | ${this.currentCodes.msfCode} | ${this.currentCodes.auditNumber} | ${serviceAbbr}`;
+            const qrText = `${callsign} | ${dsidMasked} | ${this.currentCodes.msfCode} | ${this.currentCodes.auditNumber} | ${serviceAbbr} | ${unitAbbr}`;
 
             CodeGenerator.generateQRCodeWithText(qrText)
                 .then(() => {
@@ -292,6 +309,7 @@ class MSFApp {
             code,
             operator: operatorInfo,
             service: this.currentOperator.serviceAbbr || null,
+            unit: this.currentOperator.unitAbbr || null,
             auditId: this.auditCounter++
         };
 
